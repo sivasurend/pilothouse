@@ -10,30 +10,36 @@ const agents = [
 ];
 
 const navItems = [
-  { icon: LayoutDashboard, label: "COMMAND CENTER", active: true },
-  { icon: Terminal, label: "CONSOLE", active: false },
-  { icon: Activity, label: "ANALYTICS", active: false },
-  { icon: Settings, label: "SETTINGS", active: false },
+  { id: "dashboard", icon: LayoutDashboard, label: "COMMAND CENTER" },
+  { id: "console", icon: Terminal, label: "CONSOLE" },
+  { id: "analytics", icon: Activity, label: "ANALYTICS" },
+  { id: "settings", icon: Settings, label: "SETTINGS" },
 ];
 
-export function AppSidebar() {
+interface AppSidebarProps {
+  activeView: string;
+  selectedAgent: string | null;
+  onNavClick: (id: string) => void;
+  onAgentClick: (agentId: string, agentName: string) => void;
+}
+
+export function AppSidebar({ activeView, selectedAgent, onNavClick, onAgentClick }: AppSidebarProps) {
   const [agentsOpen, setAgentsOpen] = useState(true);
 
   return (
     <aside className="w-[240px] min-h-screen border-r border-border bg-sidebar flex flex-col shrink-0">
-      {/* Logo */}
       <div className="h-14 flex items-center gap-2 px-5 border-b border-border">
         <div className="size-2 bg-foreground rounded-full animate-pulse-slow" />
         <span className="text-xs font-medium tracking-[0.15em] text-foreground">CLAW_SYSTEM</span>
       </div>
 
-      {/* Nav */}
       <nav className="flex-1 py-3">
         {navItems.map((item) => (
           <button
-            key={item.label}
+            key={item.id}
+            onClick={() => onNavClick(item.id)}
             className={`w-full flex items-center gap-3 px-5 py-2.5 text-xs tracking-[0.05em] transition-colors ${
-              item.active
+              activeView === item.id
                 ? "text-foreground bg-sidebar-accent"
                 : "text-muted-foreground hover:text-foreground hover:bg-sidebar-accent"
             }`}
@@ -43,7 +49,6 @@ export function AppSidebar() {
           </button>
         ))}
 
-        {/* Agents Accordion */}
         <div className="mt-2">
           <button
             onClick={() => setAgentsOpen(!agentsOpen)}
@@ -61,7 +66,12 @@ export function AppSidebar() {
               {agents.map((agent) => (
                 <button
                   key={agent.id}
-                  className="w-full flex items-center gap-3 px-5 pl-9 py-2 text-muted-foreground hover:text-foreground hover:bg-sidebar-accent transition-colors group"
+                  onClick={() => onAgentClick(agent.id, agent.name)}
+                  className={`w-full flex items-center gap-3 px-5 pl-9 py-2 transition-colors group ${
+                    selectedAgent === agent.id
+                      ? "text-foreground bg-sidebar-accent"
+                      : "text-muted-foreground hover:text-foreground hover:bg-sidebar-accent"
+                  }`}
                 >
                   <div
                     className={`size-1.5 ${
@@ -79,7 +89,6 @@ export function AppSidebar() {
         </div>
       </nav>
 
-      {/* Bottom */}
       <div className="border-t border-border px-5 py-3">
         <div className="text-[9px] text-muted-foreground tracking-[0.1em]">
           SYS_VERSION: 1.0.4
