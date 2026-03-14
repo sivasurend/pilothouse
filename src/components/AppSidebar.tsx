@@ -1,13 +1,6 @@
 import { useState } from "react";
 import { ChevronDown, LayoutDashboard, Activity, Settings, Terminal } from "lucide-react";
-
-const agents = [
-  { id: "captain", name: "SERIES_B_FUNDRAISING", role: "Captain", active: true },
-  { id: "crew_01", name: "INVESTOR_RESEARCHER", role: "Crew", active: true },
-  { id: "crew_02", name: "CAMPAIGN_PERSONALIZE", role: "Crew", active: true },
-  { id: "crew_03", name: "STATUS_REPORTING", role: "Crew", active: false },
-  { id: "crew_04", name: "FOUNDER_TRAINING", role: "Crew", active: true },
-];
+import type { Agent } from "@/types/agents";
 
 const navItems = [
   { id: "dashboard", icon: LayoutDashboard, label: "COMMAND CENTER" },
@@ -19,18 +12,19 @@ const navItems = [
 interface AppSidebarProps {
   activeView: string;
   selectedAgent: string | null;
+  agents: Agent[];
   onNavClick: (id: string) => void;
   onAgentClick: (agentId: string, agentName: string) => void;
 }
 
-export function AppSidebar({ activeView, selectedAgent, onNavClick, onAgentClick }: AppSidebarProps) {
+export function AppSidebar({ activeView, selectedAgent, agents, onNavClick, onAgentClick }: AppSidebarProps) {
   const [agentsOpen, setAgentsOpen] = useState(true);
 
   return (
     <aside className="w-[240px] h-screen border-r border-border bg-sidebar flex flex-col shrink-0 overflow-y-auto">
-      <div className="h-14 flex items-center gap-2 px-5 border-b border-border">
-        <div className="size-2 bg-foreground rounded-full animate-pulse-slow" />
-        <span className="text-xs font-medium tracking-[0.15em] text-foreground">CLAW_SYSTEM</span>
+      <div className="h-16 flex flex-col justify-center px-5 border-b border-border">
+        <span className="text-xs font-medium tracking-[0.15em] text-foreground">PilotHouse</span>
+        <span className="text-[9px] tracking-[0.1em] text-muted-foreground">powered by Gitclaw</span>
       </div>
 
       <nav className="flex-1 py-3">
@@ -80,7 +74,7 @@ export function AppSidebar({ activeView, selectedAgent, onNavClick, onAgentClick
                   />
                   <span className="text-[10px] tracking-tight truncate">{agent.name}</span>
                   <span className="ml-auto text-[9px] opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground">
-                    {agent.role === "Captain" ? "CPT" : "CRW"}
+                    {agent.role === "captain" ? "CPT" : "TM"}
                   </span>
                 </button>
               ))}
