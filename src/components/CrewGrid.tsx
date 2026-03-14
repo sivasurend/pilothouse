@@ -1,20 +1,7 @@
 import { Plus } from "lucide-react";
+import type { Agent } from "@/types/agents";
 
-interface CrewAgent {
-  id: string;
-  name: string;
-  status: "active" | "idle" | "error";
-  tasks: number;
-}
-
-const crewAgents: CrewAgent[] = [
-  { id: "crew_01", name: "INVESTOR_RESEARCHER", status: "active", tasks: 34 },
-  { id: "crew_02", name: "CAMPAIGN_PERSONALIZE", status: "active", tasks: 58 },
-  { id: "crew_03", name: "STATUS_REPORTING", status: "idle", tasks: 12 },
-  { id: "crew_04", name: "FOUNDER_TRAINING", status: "active", tasks: 38 },
-];
-
-function statusStyle(status: CrewAgent["status"]) {
+function statusStyle(status: Agent["status"]) {
   switch (status) {
     case "active":
       return "bg-foreground animate-pulse-slow";
@@ -25,7 +12,7 @@ function statusStyle(status: CrewAgent["status"]) {
   }
 }
 
-function statusLabel(status: CrewAgent["status"]) {
+function statusLabel(status: Agent["status"]) {
   switch (status) {
     case "active":
       return "ACTIVE";
@@ -37,16 +24,17 @@ function statusLabel(status: CrewAgent["status"]) {
 }
 
 interface CrewGridProps {
+  agents: Agent[];
   onAgentClick: (agentId: string, agentName: string) => void;
   onAddAgent: () => void;
 }
 
-export function CrewGrid({ onAgentClick, onAddAgent }: CrewGridProps) {
+export function CrewGrid({ agents, onAgentClick, onAddAgent }: CrewGridProps) {
   return (
     <div>
-      <span className="text-[9px] tracking-[0.15em] text-muted-foreground mb-3 block">CREW</span>
+      <span className="text-[9px] tracking-[0.15em] text-muted-foreground mb-3 block">TEAM</span>
       <div className="grid grid-cols-3 gap-3">
-        {crewAgents.map((agent) => (
+        {agents.map((agent) => (
           <div
             key={agent.id}
             onClick={() => onAgentClick(agent.id, agent.name)}
@@ -63,9 +51,7 @@ export function CrewGrid({ onAgentClick, onAddAgent }: CrewGridProps) {
               </span>
             </div>
             <h3 className="text-[11px] font-medium tracking-tight mb-2">{agent.name}</h3>
-            <div className="text-[10px] text-muted-foreground">
-              TASKS: {agent.tasks}
-            </div>
+            <div className="text-[10px] text-muted-foreground">TASKS: {agent.tasks}</div>
           </div>
         ))}
 

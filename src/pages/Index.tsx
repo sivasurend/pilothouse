@@ -8,7 +8,25 @@ import { AgentFileTree, getAgentFileTree } from "@/components/AgentFileTree";
 import { FileViewer } from "@/components/FileViewer";
 import { AddAgentDialog } from "@/components/AddAgentDialog";
 import type { FileNode } from "@/components/AgentFileTree";
+import type { Agent, NewAgentInput } from "@/types/agents";
 import { ArrowLeft } from "lucide-react";
+
+const initialAgents: Agent[] = [
+  {
+    id: "captain",
+    name: "SERIES_B_FUNDRAISING",
+    role: "captain",
+    active: true,
+    status: "active",
+    tasks: 142,
+  },
+  { id: "team_01", name: "INVESTOR_RESEARCHER", role: "team", active: true, status: "active", tasks: 34 },
+  { id: "team_02", name: "CAMPAIGN_PERSONALIZE", role: "team", active: true, status: "active", tasks: 58 },
+  { id: "team_03", name: "STATUS_REPORTING", role: "team", active: false, status: "idle", tasks: 12 },
+  { id: "team_04", name: "FOUNDER_TRAINING", role: "team", active: true, status: "active", tasks: 38 },
+];
+
+const defaultCaptain = initialAgents[0];
 
 const Index = () => {
   const [activeView, setActiveView] = useState("dashboard");
@@ -16,6 +34,10 @@ const Index = () => {
   const [selectedAgentName, setSelectedAgentName] = useState<string>("");
   const [selectedFile, setSelectedFile] = useState<FileNode | null>(null);
   const [addAgentOpen, setAddAgentOpen] = useState(false);
+  const [agents, setAgents] = useState<Agent[]>(initialAgents);
+
+  const captainAgent = agents.find((agent) => agent.role === "captain") ?? defaultCaptain;
+  const teamAgents = agents.filter((agent) => agent.role === "team");
 
   const handleNavClick = (id: string) => {
     setActiveView(id);
@@ -38,11 +60,31 @@ const Index = () => {
     setSelectedFile(null);
   };
 
+  const handleCreateAgent = ({ name, role }: NewAgentInput) => {
+    const newAgent: Agent = {
+      id: `${role}_${Date.now()}`,
+      name,
+      role,
+      active: true,
+      status: "active",
+      tasks: 0,
+    };
+
+    setAgents((prev) => {
+      if (role === "captain") {
+        return [newAgent, ...prev.filter((agent) => agent.role !== "captain")];
+      }
+
+      return [...prev, newAgent];
+    });
+  };
+
   return (
     <div className="flex h-screen w-full overflow-hidden">
       <AppSidebar
         activeView={activeView}
         selectedAgent={selectedAgent}
+        agents={agents}
         onNavClick={handleNavClick}
         onAgentClick={handleAgentClick}
       />
@@ -54,8 +96,14 @@ const Index = () => {
           {activeView === "dashboard" && (
             <>
               <main className="flex-1 p-6 overflow-y-auto space-y-6">
-                <CaptainCard />
+                <CaptainCard
+                  captainName={captainAgent.name}
+                  teamActive={teamAgents.filter((agent) => agent.active).length}
+                  teamTotal={teamAgents.length}
+                  onOpenFiles={() => handleAgentClick(captainAgent.id, captainAgent.name)}
+                />
                 <CrewGrid
+                  agents={teamAgents}
                   onAgentClick={handleAgentClick}
                   onAddAgent={() => setAddAgentOpen(true)}
                 />
@@ -107,7 +155,11 @@ const Index = () => {
         </div>
       </div>
 
-      <AddAgentDialog open={addAgentOpen} onOpenChange={setAddAgentOpen} />
+      <AddAgentDialog
+        open={addAgentOpen}
+        onOpenChange={setAddAgentOpen}
+        onCreateAgent={handleCreateAgent}
+      />
     </div>
   );
 };

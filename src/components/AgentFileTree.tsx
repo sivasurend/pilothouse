@@ -54,13 +54,13 @@ export function getAgentFileTree(agentName: string): FileNode[] {
       name: "RULES.md",
       type: "file",
       icon: FileText,
-      content: `# Rules — ${agentName}\n\n## Execution Rules\n1. All tasks must be logged before execution\n2. External API calls require rate-limit compliance\n3. Memory writes must be atomic\n4. Failed tasks retry max 3 times with exponential backoff\n\n## Communication Rules\n1. Messages to Captain must include task_id\n2. Crew-to-crew messages go through the Message Bus\n3. Priority levels: CRITICAL > HIGH > NORMAL > LOW\n\n## Data Rules\n1. PII must be redacted in logs\n2. All data older than 90 days auto-archives\n3. Knowledge base updates require validation`,
+      content: `# Rules — ${agentName}\n\n## Execution Rules\n1. All tasks must be logged before execution\n2. External API calls require rate-limit compliance\n3. Memory writes must be atomic\n4. Failed tasks retry max 3 times with exponential backoff\n\n## Communication Rules\n1. Messages to Captain must include task_id\n2. Team-to-team messages go through the Message Bus\n3. Priority levels: CRITICAL > HIGH > NORMAL > LOW\n\n## Data Rules\n1. PII must be redacted in logs\n2. All data older than 90 days auto-archives\n3. Knowledge base updates require validation`,
     },
     {
       name: "AGENTS.md",
       type: "file",
       icon: Users,
-      content: `# Agent Registry\n\n## Connected Agents\n| Agent | Role | Status |\n|-------|------|--------|\n| SERIES_B_FUNDRAISING | Captain | ACTIVE |\n| INVESTOR_RESEARCHER | Crew | ACTIVE |\n| CAMPAIGN_PERSONALIZE | Crew | ACTIVE |\n| STATUS_REPORTING | Crew | IDLE |\n| FOUNDER_TRAINING | Crew | ACTIVE |\n\n## Communication Protocol\nAll agents communicate via the central Message Bus.\nDirect agent-to-agent calls are reserved for CRITICAL priority only.`,
+      content: `# Agent Registry\n\n## Connected Agents\n| Agent | Role | Status |\n|-------|------|--------|\n| SERIES_B_FUNDRAISING | Captain | ACTIVE |\n| INVESTOR_RESEARCHER | Team | ACTIVE |\n| CAMPAIGN_PERSONALIZE | Team | ACTIVE |\n| STATUS_REPORTING | Team | IDLE |\n| FOUNDER_TRAINING | Team | ACTIVE |\n\n## Communication Protocol\nAll agents communicate via the central Message Bus.\nDirect agent-to-agent calls are reserved for CRITICAL priority only.`,
     },
     {
       name: "INSTRUCTIONS.md",
