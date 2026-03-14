@@ -36,7 +36,12 @@ function statusLabel(status: CrewAgent["status"]) {
   }
 }
 
-export function CrewGrid() {
+interface CrewGridProps {
+  onAgentClick: (agentId: string, agentName: string) => void;
+  onAddAgent: () => void;
+}
+
+export function CrewGrid({ onAgentClick, onAddAgent }: CrewGridProps) {
   return (
     <div>
       <span className="text-[9px] tracking-[0.15em] text-muted-foreground mb-3 block">CREW</span>
@@ -44,6 +49,7 @@ export function CrewGrid() {
         {crewAgents.map((agent) => (
           <div
             key={agent.id}
+            onClick={() => onAgentClick(agent.id, agent.name)}
             className={`border p-4 transition-colors hover:border-foreground cursor-pointer ${
               agent.status === "error"
                 ? "border-foreground bg-foreground text-background"
@@ -63,8 +69,10 @@ export function CrewGrid() {
           </div>
         ))}
 
-        {/* Add Agent */}
-        <button className="border border-dashed border-border p-4 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground transition-colors cursor-pointer">
+        <button
+          onClick={onAddAgent}
+          className="border border-dashed border-border p-4 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground transition-colors cursor-pointer"
+        >
           <Plus className="size-5" strokeWidth={1} />
         </button>
       </div>

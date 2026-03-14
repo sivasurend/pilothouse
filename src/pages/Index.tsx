@@ -6,6 +6,7 @@ import { CaptainCard } from "@/components/CaptainCard";
 import { CrewGrid } from "@/components/CrewGrid";
 import { AgentFileTree, getAgentFileTree } from "@/components/AgentFileTree";
 import { FileViewer } from "@/components/FileViewer";
+import { AddAgentDialog } from "@/components/AddAgentDialog";
 import type { FileNode } from "@/components/AgentFileTree";
 import { ArrowLeft } from "lucide-react";
 
@@ -14,6 +15,7 @@ const Index = () => {
   const [selectedAgent, setSelectedAgent] = useState<string | null>(null);
   const [selectedAgentName, setSelectedAgentName] = useState<string>("");
   const [selectedFile, setSelectedFile] = useState<FileNode | null>(null);
+  const [addAgentOpen, setAddAgentOpen] = useState(false);
 
   const handleNavClick = (id: string) => {
     setActiveView(id);
@@ -37,7 +39,7 @@ const Index = () => {
   };
 
   return (
-    <div className="flex min-h-screen w-full">
+    <div className="flex h-screen w-full overflow-hidden">
       <AppSidebar
         activeView={activeView}
         selectedAgent={selectedAgent}
@@ -45,15 +47,18 @@ const Index = () => {
         onAgentClick={handleAgentClick}
       />
 
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 h-full">
         <TopBar />
 
-        <div className="flex flex-1 min-h-0">
+        <div className="flex flex-1 overflow-hidden">
           {activeView === "dashboard" && (
             <>
               <main className="flex-1 p-6 overflow-y-auto space-y-6">
                 <CaptainCard />
-                <CrewGrid />
+                <CrewGrid
+                  onAgentClick={handleAgentClick}
+                  onAddAgent={() => setAddAgentOpen(true)}
+                />
               </main>
               <MessageBus />
             </>
@@ -61,8 +66,7 @@ const Index = () => {
 
           {activeView === "agent" && selectedAgent && (
             <>
-              {/* File Tree - left half (or full if no file selected) */}
-              <div className={`${selectedFile ? "w-1/2" : "flex-1"} flex flex-col overflow-hidden border-r border-border`}>
+              <div className={`${selectedFile ? "w-1/2" : "flex-1"} flex flex-col h-full overflow-hidden`}>
                 <div className="h-12 flex items-center gap-3 px-4 border-b border-border shrink-0">
                   <button
                     onClick={handleBackToDashboard}
@@ -93,9 +97,8 @@ const Index = () => {
                 </div>
               </div>
 
-              {/* File Viewer - right half */}
               {selectedFile && (
-                <div className="w-1/2">
+                <div className="w-1/2 h-full">
                   <FileViewer file={selectedFile} onClose={() => setSelectedFile(null)} />
                 </div>
               )}
@@ -103,6 +106,8 @@ const Index = () => {
           )}
         </div>
       </div>
+
+      <AddAgentDialog open={addAgentOpen} onOpenChange={setAddAgentOpen} />
     </div>
   );
 };
