@@ -27,7 +27,7 @@ export function AppSidebar({ activeView, selectedAgent, onNavClick, onAgentClick
   const [agentsOpen, setAgentsOpen] = useState(true);
 
   return (
-    <aside className="w-[240px] min-h-screen border-r border-border bg-sidebar flex flex-col shrink-0">
+    <aside className="w-[240px] h-screen border-r border-border bg-sidebar flex flex-col shrink-0 overflow-y-auto">
       <div className="h-14 flex items-center gap-2 px-5 border-b border-border">
         <div className="size-2 bg-foreground rounded-full animate-pulse-slow" />
         <span className="text-xs font-medium tracking-[0.15em] text-foreground">CLAW_SYSTEM</span>
