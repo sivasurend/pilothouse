@@ -8,6 +8,16 @@ import {
   HeartHandshake,
   Sparkles,
   GraduationCap,
+  Bot,
+  Wrench,
+  BookOpenText,
+  Puzzle,
+  Workflow,
+  Archive,
+  LayoutGrid,
+  Search,
+  ShieldCheck,
+  ClipboardList,
 } from "lucide-react";
 import type { Agent } from "@/types/agents";
 
@@ -44,6 +54,26 @@ const navGroups: NavGroup[] = [
       { id: "agent_4", label: "Agent 4", icon: HeartHandshake },
       { id: "agent_5", label: "Agent 5", icon: Sparkles },
       { id: "agent_6", label: "Agent 6", icon: GraduationCap },
+    ],
+  },
+  {
+    label: "BUILD",
+    items: [
+      { id: "agent_studio", label: "Agent Studio", icon: Bot },
+      { id: "skills_manager", label: "Skills Manager", icon: Wrench },
+      { id: "knowledge_base", label: "Knowledge Base", icon: BookOpenText },
+      { id: "integrations", label: "Integrations", icon: Puzzle },
+      { id: "skill_flows", label: "Skill Flows", icon: Workflow },
+    ],
+  },
+  {
+    label: "OBSERVE",
+    items: [
+      { id: "decision_inbox", label: "Decision Inbox", icon: Archive },
+      { id: "agent_metrics", label: "Agent Metrics", icon: LayoutGrid },
+      { id: "agent_runs", label: "Agent Runs", icon: Search },
+      { id: "compliance", label: "Compliance & Guardrails", icon: ShieldCheck },
+      { id: "audit_trail", label: "Audit Trail", icon: ClipboardList },
     ],
   },
 ];
