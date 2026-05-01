@@ -56,6 +56,7 @@ interface AppSidebarProps {
   onAgentClick: (agentId: string, agentName: string) => void;
 }
 
+
 export function AppSidebar({ activeView, onNavClick }: AppSidebarProps) {
   return (
     <aside className="w-[260px] h-screen border-r border-border bg-sidebar flex flex-col shrink-0 overflow-y-auto">
