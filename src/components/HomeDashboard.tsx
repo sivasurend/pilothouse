@@ -129,7 +129,7 @@ export function HomeDashboard({ onJourneyClick }: HomeDashboardProps) {
 
           <h1 className="text-2xl tracking-tight text-foreground">Lyzr Agentic Workbench</h1>
           <p className="mt-2 text-[11px] tracking-[0.05em] text-muted-foreground max-w-xl">
-            AgenticOS — Autonomous people intelligence for the modern workforce
+            A Human-Agent Interaction Portal
           </p>
 
           {/* Chat input */}
@@ -171,7 +171,7 @@ export function HomeDashboard({ onJourneyClick }: HomeDashboardProps) {
         <section className="mt-12">
           <div className="flex items-center gap-2 mb-4 justify-center">
             <ClipboardList className="size-3.5 text-muted-foreground" strokeWidth={1.5} />
-            <span className="text-[10px] tracking-[0.2em] text-muted-foreground">AGENT JOURNEYS</span>
+            <span className="text-[10px] tracking-[0.2em] text-muted-foreground">AGENT QUICKSTART</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 relative">
