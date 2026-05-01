@@ -29,9 +29,6 @@ export function TopBar() {
           </button>
         </div>
 
-        <button className="text-[10px] tracking-[0.15em] text-muted-foreground border border-border px-4 py-1.5 hover:bg-foreground hover:text-background transition-colors">
-          LOGIN
-        </button>
       </div>
     </header>
   );
