@@ -1,25 +1,13 @@
-import { useState } from "react";
 import {
-  ChevronDown,
   Home,
   BookOpen,
   Inbox,
   Users,
   UserSearch,
   UserCheck,
-  ClipboardCheck,
-  CalendarDays,
-  Send,
   HeartHandshake,
   Sparkles,
   GraduationCap,
-  Briefcase,
-  LifeBuoy,
-  LogOut,
-  BarChart3,
-  Activity,
-  ShieldCheck,
-  FileText,
 } from "lucide-react";
 import type { Agent } from "@/types/agents";
 
