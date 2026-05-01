@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { AppSidebar } from "@/components/AppSidebar";
 import { TopBar } from "@/components/TopBar";
-import { MessageBus } from "@/components/MessageBus";
-import { CaptainCard } from "@/components/CaptainCard";
-import { CrewGrid } from "@/components/CrewGrid";
+import { HomeDashboard } from "@/components/HomeDashboard";
 import { AgentFileTree, getAgentFileTree } from "@/components/AgentFileTree";
 import { FileViewer } from "@/components/FileViewer";
 import { AddAgentDialog } from "@/components/AddAgentDialog";
@@ -14,19 +12,17 @@ import { ArrowLeft } from "lucide-react";
 const initialAgents: Agent[] = [
   {
     id: "captain",
-    name: "SERIES_B_FUNDRAISING",
+    name: "HR_OFFICE_CAPTAIN",
     role: "captain",
     active: true,
     status: "active",
     tasks: 142,
   },
-  { id: "team_01", name: "INVESTOR_RESEARCHER", role: "team", active: true, status: "active", tasks: 34 },
-  { id: "team_02", name: "CAMPAIGN_PERSONALIZE", role: "team", active: true, status: "active", tasks: 58 },
-  { id: "team_03", name: "STATUS_REPORTING", role: "team", active: false, status: "idle", tasks: 12 },
-  { id: "team_04", name: "FOUNDER_TRAINING", role: "team", active: true, status: "active", tasks: 38 },
+  { id: "team_01", name: "TALENT_PIPELINE", role: "team", active: true, status: "active", tasks: 34 },
+  { id: "team_02", name: "PERFORMANCE_REVIEW", role: "team", active: true, status: "active", tasks: 58 },
+  { id: "team_03", name: "COMPENSATION_ANALYSIS", role: "team", active: false, status: "idle", tasks: 12 },
+  { id: "team_04", name: "WORKFORCE_PLANNING", role: "team", active: true, status: "active", tasks: 38 },
 ];
-
-const defaultCaptain = initialAgents[0];
 
 const Index = () => {
   const [activeView, setActiveView] = useState("dashboard");
@@ -35,9 +31,6 @@ const Index = () => {
   const [selectedFile, setSelectedFile] = useState<FileNode | null>(null);
   const [addAgentOpen, setAddAgentOpen] = useState(false);
   const [agents, setAgents] = useState<Agent[]>(initialAgents);
-
-  const captainAgent = agents.find((agent) => agent.role === "captain") ?? defaultCaptain;
-  const teamAgents = agents.filter((agent) => agent.role === "team");
 
   const handleNavClick = (id: string) => {
     setActiveView(id);
@@ -51,6 +44,10 @@ const Index = () => {
     setSelectedAgent(agentId);
     setSelectedAgentName(agentName);
     setSelectedFile(null);
+  };
+
+  const handleJourneyClick = (id: string) => {
+    handleAgentClick(id, id.toUpperCase());
   };
 
   const handleBackToDashboard = () => {
@@ -74,7 +71,6 @@ const Index = () => {
       if (role === "captain") {
         return [newAgent, ...prev.filter((agent) => agent.role !== "captain")];
       }
-
       return [...prev, newAgent];
     });
   };
@@ -93,26 +89,7 @@ const Index = () => {
         <TopBar />
 
         <div className="flex flex-1 overflow-hidden">
-          {activeView === "dashboard" && (
-            <>
-              <main className="flex-1 p-6 overflow-y-auto space-y-6">
-                <CaptainCard
-                  captainName={captainAgent.name}
-                  teamActive={teamAgents.filter((agent) => agent.active).length}
-                  teamTotal={teamAgents.length}
-                  onOpenFiles={() => handleAgentClick(captainAgent.id, captainAgent.name)}
-                />
-                <CrewGrid
-                  agents={teamAgents}
-                  onAgentClick={handleAgentClick}
-                  onAddAgent={() => setAddAgentOpen(true)}
-                />
-              </main>
-              <MessageBus />
-            </>
-          )}
-
-          {activeView === "agent" && selectedAgent && (
+          {activeView === "agent" && selectedAgent ? (
             <>
               <div className={`${selectedFile ? "w-1/2" : "flex-1"} flex flex-col h-full overflow-hidden`}>
                 <div className="h-12 flex items-center gap-3 px-4 border-b border-border shrink-0">
@@ -151,6 +128,8 @@ const Index = () => {
                 </div>
               )}
             </>
+          ) : (
+            <HomeDashboard onJourneyClick={handleJourneyClick} />
           )}
         </div>
       </div>

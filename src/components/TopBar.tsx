@@ -1,4 +1,4 @@
-import { Bell } from "lucide-react";
+import { Bell, Building2, User } from "lucide-react";
 
 export function TopBar() {
   return (
@@ -12,11 +12,22 @@ export function TopBar() {
         </span>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-3">
         <button className="relative p-2 text-muted-foreground hover:text-foreground transition-colors">
           <Bell className="size-4" strokeWidth={1.5} />
           <div className="absolute top-1.5 right-1.5 size-1.5 bg-foreground rounded-full" />
         </button>
+
+        <div className="flex border border-border">
+          <button className="flex items-center gap-2 px-3 py-1.5 text-[10px] tracking-[0.1em] bg-foreground text-background">
+            <Building2 className="size-3" strokeWidth={1.5} />
+            HR OFFICE
+          </button>
+          <button className="flex items-center gap-2 px-3 py-1.5 text-[10px] tracking-[0.1em] text-muted-foreground hover:text-foreground transition-colors border-l border-border">
+            <User className="size-3" strokeWidth={1.5} />
+            EMPLOYEE
+          </button>
+        </div>
 
         <button className="text-[10px] tracking-[0.15em] text-muted-foreground border border-border px-4 py-1.5 hover:bg-foreground hover:text-background transition-colors">
           LOGIN
