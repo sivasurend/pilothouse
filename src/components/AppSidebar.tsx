@@ -132,9 +132,6 @@ export function AppSidebar({ activeView, onNavClick }: AppSidebarProps) {
           </div>
           <div className="flex flex-col leading-tight">
             <span className="text-[10px] tracking-[0.05em] text-foreground">Agent Active</span>
-            <span className="text-[8px] tracking-[0.1em] text-muted-foreground">
-              POWERED BY GITCLAW
-            </span>
           </div>
         </div>
       </div>
