@@ -38,39 +38,24 @@ const navGroups: NavGroup[] = [
   {
     items: [
       { id: "dashboard", label: "Home", icon: Home },
-      { id: "wiki", label: "LLM Wiki", icon: BookOpen },
-      { id: "inbox", label: "Decision Inbox", icon: Inbox },
+      { id: "wiki", label: "Agent Graph", icon: BookOpen },
+      { id: "inbox", label: "Agent Decision Inbox", icon: Inbox },
     ],
   },
   {
-    label: "RECRUITMENT",
+    label: "AGENT CATEGORY 1",
     items: [
-      { id: "talent_pipeline", label: "Talent Pipeline", icon: Users },
-      { id: "candidate_sourcing", label: "Candidate Sourcing", icon: UserSearch },
-      { id: "candidate_matching", label: "Candidate Matching", icon: UserCheck },
-      { id: "candidate_evaluation", label: "Candidate Evaluation", icon: ClipboardCheck },
-      { id: "interview_scheduling", label: "Interview Scheduling", icon: CalendarDays },
-      { id: "employee_onboarding", label: "Employee Onboarding", icon: Send },
+      { id: "agent_1", label: "Agent 1", icon: Users },
+      { id: "agent_2", label: "Agent 2", icon: UserSearch },
+      { id: "agent_3", label: "Agent 3", icon: UserCheck },
     ],
   },
   {
-    label: "EMPLOYEE EXPERIENCE",
+    label: "AGENT CATEGORY 2",
     items: [
-      { id: "engagement_survey", label: "Engagement Survey", icon: HeartHandshake },
-      { id: "diversity_inclusion", label: "Diversity & Inclusion", icon: Sparkles },
-      { id: "learning_development", label: "Learning & Development", icon: GraduationCap },
-      { id: "employee_relations", label: "Employee Relations", icon: Briefcase },
-      { id: "help_desk", label: "Help Desk (Admin)", icon: LifeBuoy },
-      { id: "exit_interviews", label: "Exit Interviews", icon: LogOut },
-    ],
-  },
-  {
-    label: "HR PRODUCTIVITY",
-    items: [
-      { id: "performance_review", label: "Performance Review", icon: BarChart3 },
-      { id: "compensation_analysis", label: "Compensation Analysis", icon: Activity },
-      { id: "workforce_planning", label: "Workforce Planning", icon: ShieldCheck },
-      { id: "compliance_audit", label: "Compliance Audit", icon: FileText },
+      { id: "agent_4", label: "Agent 4", icon: HeartHandshake },
+      { id: "agent_5", label: "Agent 5", icon: Sparkles },
+      { id: "agent_6", label: "Agent 6", icon: GraduationCap },
     ],
   },
 ];
