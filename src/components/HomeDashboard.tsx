@@ -26,39 +26,39 @@ interface Journey {
 
 const journeys: Journey[] = [
   {
-    id: "talent_pipeline",
-    title: "Talent Pipeline",
+    id: "agent_1",
+    title: "Agent 1",
     description: "Requisition tracking, pipeline health, source effectiveness & hiring velocity",
     icon: Users,
     tooltip: "Start here — review pipeline health, flag aging requisitions & optimize source channels",
   },
   {
-    id: "performance_review",
-    title: "Performance Review",
+    id: "agent_2",
+    title: "Agent 2",
     description: "Rating distribution, calibration sessions, PIP tracking & development plans",
     icon: BarChart3,
   },
   {
-    id: "compensation_analysis",
-    title: "Compensation Analysis",
+    id: "agent_3",
+    title: "Agent 3",
     description: "Market benchmarking, pay equity audit, compa-ratios & merit planning",
     icon: TrendingUp,
   },
   {
-    id: "workforce_planning",
-    title: "Workforce Planning",
+    id: "agent_4",
+    title: "Agent 4",
     description: "Demand forecast, skills gap analysis, succession pipeline & scenario modeling",
     icon: ShieldCheck,
   },
   {
-    id: "employee_onboarding",
-    title: "Employee Onboarding",
+    id: "agent_5",
+    title: "Agent 5",
     description: "30/60/90-day tracking across Workday, Docebo, ServiceNow, and Calendar",
     icon: Heart,
   },
   {
-    id: "compliance_audit",
-    title: "Compliance Audit",
+    id: "agent_6",
+    title: "Agent 6",
     description: "I-9, FLSA, EEO, ADA audit results, findings & remediation tracking",
     icon: FileText,
   },
@@ -127,7 +127,7 @@ export function HomeDashboard({ onJourneyClick }: HomeDashboardProps) {
             <span className="text-sm tracking-[0.15em] text-background font-medium">PH</span>
           </div>
 
-          <h1 className="text-2xl tracking-tight text-foreground">HR Office AgenticOS</h1>
+          <h1 className="text-2xl tracking-tight text-foreground">Agentic Workbench</h1>
           <p className="mt-2 text-[11px] tracking-[0.05em] text-muted-foreground max-w-xl">
             AgenticOS — Autonomous people intelligence for the modern workforce
           </p>
