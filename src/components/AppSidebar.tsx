@@ -59,17 +59,15 @@ const navGroups: NavGroup[] = [
   {
     label: "BUILD",
     items: [
-      { id: "agent_studio", label: "Agent Studio", icon: Bot },
+      { id: "agent_studio", label: "Agents Library", icon: Bot },
       { id: "skills_manager", label: "Skills Manager", icon: Wrench },
       { id: "knowledge_base", label: "Knowledge Base", icon: BookOpenText },
       { id: "integrations", label: "Integrations", icon: Puzzle },
-      { id: "skill_flows", label: "Skill Flows", icon: Workflow },
     ],
   },
   {
     label: "OBSERVE",
     items: [
-      { id: "decision_inbox", label: "Decision Inbox", icon: Archive },
       { id: "agent_metrics", label: "Agent Metrics", icon: LayoutGrid },
       { id: "agent_runs", label: "Agent Runs", icon: Search },
       { id: "compliance", label: "Compliance & Guardrails", icon: ShieldCheck },
@@ -93,7 +91,7 @@ export function AppSidebar({ activeView, onNavClick }: AppSidebarProps) {
       {/* Brand */}
       <div className="h-16 flex items-center gap-3 px-5 border-b border-border shrink-0">
         <div className="size-8 bg-foreground flex items-center justify-center">
-          <span className="text-[10px] tracking-[0.15em] text-background font-medium">AW</span>
+          <span className="text-[9px] tracking-[0.1em] text-background font-medium">Lyzr</span>
         </div>
         <div className="flex flex-col">
           <span className="text-xs font-medium tracking-[0.05em] text-foreground">Agentic Workbench</span>

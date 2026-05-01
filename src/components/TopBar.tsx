@@ -21,7 +21,7 @@ export function TopBar() {
         <div className="flex border border-border">
           <button className="flex items-center gap-2 px-3 py-1.5 text-[10px] tracking-[0.1em] bg-foreground text-background">
             <Building2 className="size-3" strokeWidth={1.5} />
-            HR OFFICE
+            MANAGER VIEW
           </button>
           <button className="flex items-center gap-2 px-3 py-1.5 text-[10px] tracking-[0.1em] text-muted-foreground hover:text-foreground transition-colors border-l border-border">
             <User className="size-3" strokeWidth={1.5} />
