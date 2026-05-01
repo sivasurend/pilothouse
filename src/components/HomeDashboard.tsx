@@ -124,10 +124,10 @@ export function HomeDashboard({ onJourneyClick }: HomeDashboardProps) {
         {/* Hero */}
         <section className="flex flex-col items-center text-center">
           <div className="size-12 bg-foreground flex items-center justify-center mb-5">
-            <span className="text-sm tracking-[0.15em] text-background font-medium">PH</span>
+            <span className="text-[11px] tracking-[0.1em] text-background font-medium">Lyzr</span>
           </div>
 
-          <h1 className="text-2xl tracking-tight text-foreground">Agentic Workbench</h1>
+          <h1 className="text-2xl tracking-tight text-foreground">Lyzr Agentic Workbench</h1>
           <p className="mt-2 text-[11px] tracking-[0.05em] text-muted-foreground max-w-xl">
             AgenticOS — Autonomous people intelligence for the modern workforce
           </p>
