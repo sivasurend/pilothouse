@@ -68,19 +68,16 @@ interface AppSidebarProps {
   onAgentClick: (agentId: string, agentName: string) => void;
 }
 
-export function AppSidebar({ activeView, selectedAgent, agents, onNavClick, onAgentClick }: AppSidebarProps) {
-  const [agentsOpen, setAgentsOpen] = useState(false);
-
+export function AppSidebar({ activeView, onNavClick }: AppSidebarProps) {
   return (
     <aside className="w-[260px] h-screen border-r border-border bg-sidebar flex flex-col shrink-0 overflow-y-auto">
       {/* Brand */}
       <div className="h-16 flex items-center gap-3 px-5 border-b border-border shrink-0">
         <div className="size-8 bg-foreground flex items-center justify-center">
-          <span className="text-[10px] tracking-[0.15em] text-background font-medium">PH</span>
+          <span className="text-[10px] tracking-[0.15em] text-background font-medium">AW</span>
         </div>
         <div className="flex flex-col">
-          <span className="text-xs font-medium tracking-[0.05em] text-foreground">PilotHouse</span>
-          <span className="text-[9px] tracking-[0.15em] text-muted-foreground">POWERED BY GITCLAW</span>
+          <span className="text-xs font-medium tracking-[0.05em] text-foreground">Agentic Workbench</span>
         </div>
       </div>
 
@@ -108,46 +105,6 @@ export function AppSidebar({ activeView, selectedAgent, agents, onNavClick, onAg
             ))}
           </div>
         ))}
-
-        {/* Agents collapsible */}
-        <div className="mt-4">
-          <button
-            onClick={() => setAgentsOpen(!agentsOpen)}
-            className="w-full flex items-center justify-between px-5 py-2 text-[9px] tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <span>AGENTS</span>
-            <ChevronDown
-              className={`size-3 transition-transform duration-200 ${agentsOpen ? "rotate-0" : "-rotate-90"}`}
-              strokeWidth={1.5}
-            />
-          </button>
-
-          {agentsOpen && (
-            <div className="py-1">
-              {agents.map((agent) => (
-                <button
-                  key={agent.id}
-                  onClick={() => onAgentClick(agent.id, agent.name)}
-                  className={`w-full flex items-center gap-3 px-5 pl-9 py-2 transition-colors group ${
-                    selectedAgent === agent.id
-                      ? "text-foreground bg-sidebar-accent"
-                      : "text-muted-foreground hover:text-foreground hover:bg-sidebar-accent"
-                  }`}
-                >
-                  <div
-                    className={`size-1.5 ${
-                      agent.active ? "bg-foreground animate-pulse-slow" : "bg-muted-foreground"
-                    }`}
-                  />
-                  <span className="text-[10px] tracking-tight truncate">{agent.name}</span>
-                  <span className="ml-auto text-[9px] opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground">
-                    {agent.role === "captain" ? "CPT" : "TM"}
-                  </span>
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
       </nav>
 
       {/* Agent Active footer */}
